@@ -1,0 +1,8 @@
+{% for block in matrix %}
+
+  {% include [
+    'matrix/' ~ block.type,
+    'matrix/default'
+  ] %}
+
+{% endfor %}

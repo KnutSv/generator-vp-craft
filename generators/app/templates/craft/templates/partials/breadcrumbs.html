@@ -1,0 +1,20 @@
+{% set ancestors = entry.getAncestors() %}
+
+{% if entry.level > 1 %}
+  <ol class="breadcrumb" itemprop="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+      <a class="breadcrumb__item" href="{{ siteUrl }}" itemprop="item"><span itemprop="name">{{ siteName }}</span></a>
+      <meta itemprop="position" content="1">
+    </li>
+    {% for crumb in ancestors %}
+      <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+        <a class="breadcrumb__item" href="{{ crumb.url }}" itemprop="item"><span itemprop="name">{{ crumb.title }}</span></a>
+        <meta itemprop="position" content="{{ loop.index + 1 }}">
+      </li>
+    {% endfor %}
+    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+      <em class="breadcrumb__item" itemprop="item"><span itemprop="name">{{ entry.title }}</span></em>
+      <meta itemprop="position" content="{{ ancestors|length + 2 }}">
+    </li>
+  </ol>
+{% endif %}

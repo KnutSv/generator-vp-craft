@@ -1,0 +1,3 @@
+<aside class="about">
+  {{ 'Last changed'|t }} <time itemprop="dateModified" datetime="{{ entry.dateUpdated.rfc3339 }}">{{ entry.dateUpdated|date('F jS, Y'|t) }}</time>
+</aside>

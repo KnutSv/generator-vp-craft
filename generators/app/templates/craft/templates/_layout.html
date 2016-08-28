@@ -1,0 +1,68 @@
+{#
+ # Layout template
+ # ---------------
+ #
+ # This template defines your site’s global layout. It can be
+ # “extended” by other templates to fill in the gaps.
+ #
+ # See Twig’s Template Inheritance documentation for more details:
+ # http://twig.sensiolabs.org/doc/templates.html#template-inheritance
+ #}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="home" href="{{ siteUrl }}" />
+
+  {#{% filter minimee %}
+    <link href="/css/main.css'" />
+  {% endfilter %}#}
+
+
+  {# Prevent font loading from blocking page render with rel=preload and loadCSS polyfill #}
+  {#<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700"></noscript>#}
+
+  <!--[if lt IE 9]>
+    {#{% filter minimee %}
+    <link href="css/oldIE.css" />
+    {% endfilter %}#}
+
+    {#{% filter minimee %}
+      <script src="js/oldIE.js"></script>
+    {% endfilter %}#}
+  <![endif]-->
+
+  {#{% filter minimee %}
+    <script src="js/polyfills.js"></script>
+  {% endfilter %}#}
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="sticky-footer__main">
+    <header class="header">
+      <div class="constrained">
+        <div class="clearfix">
+          <a class="logo" href="{{ siteUrl }}">{{ siteName }}</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" role="main">
+      {% block content %}
+      {% endblock %}
+    </main>
+
+  </div>
+  <div class="sticky-footer__footer">
+    {% include 'partials/footer' %}
+  </div>
+</body>
+</html>
