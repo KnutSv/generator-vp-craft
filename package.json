@@ -2,11 +2,11 @@
   "name": "generator-vp-craft",
   "version": "1.0.0",
   "description": "Downloads latest craft version and sets up a flexible template structure",
-  "homepage": "",
+  "homepage": "https://github.com/KnutSv/generator-vp-craft",
   "author": {
     "name": "Knut Svangstu",
     "email": "knut@vangenplotz.no",
-    "url": ""
+    "url": "https://github.com/KnutSv"
   },
   "files": [
     "generators"
