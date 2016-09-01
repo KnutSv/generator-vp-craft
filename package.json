@@ -1,6 +1,6 @@
 {
   "name": "generator-vp-craft",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Downloads latest craft version and sets up a flexible template structure",
   "homepage": "https://github.com/KnutSv/generator-vp-craft",
   "author": {
