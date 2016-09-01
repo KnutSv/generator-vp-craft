@@ -8,8 +8,15 @@
  */
 
 return array(
+  '*' => array(
     'devMode' => true,
     'omitScriptNameInUrls' => true,
     'limitAutoSlugsToAscii' => true,
     'convertFilenamesToAscii' => true
+  ),
+  'staging.site.vpdev.no' => array(
+    'siteUrl' => array(
+      'no' => "http://staging.elverum.vpdev.no"
+    )
+  )
 );
