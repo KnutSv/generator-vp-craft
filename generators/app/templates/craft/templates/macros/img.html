@@ -1,22 +1,22 @@
 {% macro srcSet(image, sizes, mode, ratio, position) %}
 {% spaceless %}
-  {% set mode = mode|default('fit') %}
-  {% set position = position|default('center-center') %}
-  {% for size in sizes %}
+  {%- set mode = mode|default('fit') -%}
+  {%- set position = position|default('center-center') -%}
+  {%- for size in sizes -%}
 
-    {% if mode != 'fit' %}
-      {% set imageSize = {mode: mode, width: size, height: (size * ratio)|round, position: position, quality: 75} %}
-    {% else %}
-      {% set imageSize = {mode: mode, width: size, quality: 75} %}
-    {% endif %}
+    {%- if mode != 'fit' -%}
+      {%- set imageSize = {mode: mode, width: size, height: (size * ratio)|round, position: position, quality: 75} -%}
+    {%- else -%}
+      {%- set imageSize = {mode: mode, width: size, quality: 75} -%}
+    {%- endif -%}
 
-    {{ image.getUrl(imageSize) ~ ' ' ~ size ~ 'w' }}
+    {{- image.getUrl(imageSize) ~ ' ' ~ size ~ 'w' -}}
 
-    {% if not loop.last %}
-      {{ ', ' }}
-    {% endif %}
+    {%- if not loop.last -%}
+      {{- ', ' -}}
+    {%- endif -%}
 
-  {% endfor %}
+  {%- endfor -%}
 {% endspaceless %}
 {% endmacro %}
 
