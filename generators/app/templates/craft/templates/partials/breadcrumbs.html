@@ -1,6 +1,15 @@
-{% set ancestors = entry.getAncestors() %}
+{% set entry = entry|default(false) %}
+{% if entry %}
+  {% set ancestors = ancestors|default(entry.getAncestors()) %}
+{% else %}
+  {# If no entry, set last ancestors element as entry #}
+  {% set origAncestors = ancestors %}
+  {% set ancestors = ancestors[:ancestors|length - 1]|default([]) %}
+  {% set entry = origAncestors|last|default(false) %}
+{% endif %}
 
-{% if entry.level > 1 %}
+
+{% if ancestors|length %}
   <ol class="breadcrumb" itemprop="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
       <a class="breadcrumb__item" href="{{ siteUrl }}" itemprop="item"><span itemprop="name">{{ siteName }}</span></a>
@@ -12,9 +21,11 @@
         <meta itemprop="position" content="{{ loop.index + 1 }}">
       </li>
     {% endfor %}
-    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-      <em class="breadcrumb__item" itemprop="item"><span itemprop="name">{{ entry.title }}</span></em>
-      <meta itemprop="position" content="{{ ancestors|length + 2 }}">
-    </li>
+    {% if entry %}
+      <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+        <em class="breadcrumb__item" itemprop="item"><span itemprop="name">{{ entry.title }}</span></em>
+        <meta itemprop="position" content="{{ ancestors|length + 2 }}">
+      </li>
+    {% endif %}
   </ol>
 {% endif %}
