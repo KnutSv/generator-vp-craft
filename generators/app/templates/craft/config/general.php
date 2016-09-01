@@ -16,7 +16,7 @@ return array(
   ),
   'staging.site.vpdev.no' => array(
     'siteUrl' => array(
-      'no' => "http://staging.elverum.vpdev.no"
+      'no' => "http://staging.site.vpdev.no"
     )
   )
 );
