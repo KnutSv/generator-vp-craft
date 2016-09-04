@@ -29,25 +29,25 @@
   @param mode: crop, fit or stretch
   @param ratio: integer. Default 0.5625 (9:16)
 #}
-{% macro srcSetImg(image, sizes, srSetSizes, defaultWidth, mode, ratio, position) %}
-  {% set mode = mode|default('fit') %}
-  {% set ratio = ratio|default(0.5625) %}
-  {% set position = position|default('center-center') %}
+{% macro srcSetImg(image, sizes, srSetSizes, defaultWidth, mode, ratio, position) -%}
+  {%- set mode = mode|default('fit') -%}
+  {%- set ratio = ratio|default(0.5625) -%}
+  {%- set position = position|default('center-center') -%}
 
-  {% if mode != 'fit' %}
-    {% set defaultImg = {
+  {%- if mode != 'fit' -%}
+    {%- set defaultImg = {
       mode: mode,
       width: defaultWidth,
       height: (defaultWidth * ratio)|round,
       position: position,
       quality: 75
-    } %}
-  {% else %}
-    {% set defaultImg = {
+    } -%}
+  {%- else -%}
+    {%- set defaultImg = {
       mode: 'fit',
       width: defaultWidth,
       quality: 75
-    } %}
-  {% endif %}
+    } -%}
+  {%- endif -%}
   <img sizes="{{ sizes }}" srcset="{{ _self.srcSet(image, srSetSizes, mode, ratio, position) }}" width="{{ image.getWidth(defaultImg) }}" height="{{ image.getHeight(defaultImg) }}" alt="{{ image.title }}">
 {% endmacro %}
